@@ -12,7 +12,7 @@ public class Animal {
     private String tipo;
     private String cor;
     private String raca;
-
+    private String foto;
     private int idade;
     private float peso;
 
@@ -165,6 +165,14 @@ public class Animal {
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
+    }
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
     }
     
 

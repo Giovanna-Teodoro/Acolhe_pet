@@ -35,19 +35,13 @@ public class DB {
                             PASSWORD
                     );
 
-            System.out.println(
-                    "Banco conectado"
-            );
+      //      System.out.println( "Banco conectado");
 
         } catch (Exception e) {
 
-            System.out.println(
-                    "Banco nao encontrado"
-            );
+            //System.out.println(  "Banco nao encontrado");
 
-            System.out.println(
-                    "Criando a banco "
-            );
+  //          System.out.println( "Criando a banco ");
 
             try {
 
@@ -75,9 +69,7 @@ public class DB {
 
                 inicial.close();
 
-                System.out.println(
-                        "Banco criado"
-                );
+          //      System.out.println( "Banco criado");
 
                 conn =
                         DriverManager.getConnection(
@@ -86,9 +78,7 @@ public class DB {
                                 PASSWORD
                         );
 
-                System.out.println(
-                        "Banco conectado apos criacao"
-                );
+              //  System.out.println("Banco conectado apos criacao" );
 
             } catch (Exception ex) {
 

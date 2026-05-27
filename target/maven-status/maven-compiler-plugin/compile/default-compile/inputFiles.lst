@@ -23,6 +23,7 @@
 /home/ba0047/NetBeansProjects/AcolhePet/src/main/java/Model_Entety/Vacina.java
 /home/ba0047/NetBeansProjects/AcolhePet/src/main/java/Teste/Main.java
 /home/ba0047/NetBeansProjects/AcolhePet/src/main/java/Teste/TesteArquivo.java
+/home/ba0047/NetBeansProjects/AcolhePet/src/main/java/Teste/TesteCarga.java
 /home/ba0047/NetBeansProjects/AcolhePet/src/main/java/View/CadastroAdotante.java
 /home/ba0047/NetBeansProjects/AcolhePet/src/main/java/View/CadastroAnimal.java
 /home/ba0047/NetBeansProjects/AcolhePet/src/main/java/View/Estatisticas.java
@@ -34,6 +35,7 @@
 /home/ba0047/NetBeansProjects/AcolhePet/src/main/java/service/AnimalService.java
 /home/ba0047/NetBeansProjects/AcolhePet/src/main/java/service/AnimalVacinaService.java
 /home/ba0047/NetBeansProjects/AcolhePet/src/main/java/service/EstatisticaService.java
+/home/ba0047/NetBeansProjects/AcolhePet/src/main/java/service/FotoService.java
 /home/ba0047/NetBeansProjects/AcolhePet/src/main/java/service/HistoricoService.java
 /home/ba0047/NetBeansProjects/AcolhePet/src/main/java/service/MatchAutomaticoService.java
 /home/ba0047/NetBeansProjects/AcolhePet/src/main/java/service/MatchService.java

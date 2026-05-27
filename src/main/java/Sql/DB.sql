@@ -45,6 +45,8 @@ CREATE TABLE IF NOT EXISTS animal (
 
     nome VARCHAR(100) NOT NULL,
 
+    foto VARCHAR(255),
+
     tipo VARCHAR(50) DEFAULT '',
 
     cor VARCHAR(50) DEFAULT '',
@@ -138,7 +140,7 @@ CREATE TABLE IF NOT EXISTS adocao (
         'FINALIZADA',
         'CANCELADA'
     ) DEFAULT 'EM_PROCESSO',
-
+    observacao varchar(255),
     FOREIGN KEY (adotante_id)
     REFERENCES adotante(id),
 

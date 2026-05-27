@@ -16,13 +16,30 @@ public class AnimalService {
 
     }
 
+    public void salvarComFoto(
+            Animal animal
+    ) throws Exception {
+
+        FotoService fotoService
+                = new FotoService();
+
+        String caminho
+                = fotoService.salvarFoto(
+                        animal.getNome()
+                );
+
+        animal.setFoto(caminho);
+
+        dao.salvar(animal);
+    }
+/**
     public void salvar(Animal animal)
             throws SQLException {
 
         dao.salvar(animal);
 
     }
-
+**/
     public List<Animal> listar()
             throws SQLException {
 

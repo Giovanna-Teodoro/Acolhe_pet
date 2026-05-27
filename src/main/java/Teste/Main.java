@@ -1,5 +1,6 @@
 package Teste;
 
+import Controller.MatchController;
 import Controller.SistemaController;
 
 import Model_Entety.*;
@@ -7,329 +8,472 @@ import Model_Entety.*;
 import java.time.LocalDate;
 
 import java.util.List;
+import service.ResultadoMatch;
 
 public class Main {
+
+    private static SistemaController controller;
+    private static MatchController mathC;
 
     public static void main(String[] args) {
 
         try {
 
-            SistemaController controller
+            controller
                     = new SistemaController();
+                    mathC = new MatchController();
 
-            System.out.println(
-                    "========== TESTE SISTEMA =========="
-            );
+            //   testeInsert();
+                 testeSelect();
             /**
-             * User user = new User();
+             * testeUpdate();
              *
-             * user.setNome( "Administrador" );
+             * testeRelacoes();
              *
-             * user.setEmail( "admin@gmail.com" );
+             * testeDelete();
              *
-             * user.setSenhaHash( "123456" );
-             *
-             * controller.salvarUsuario( user );
-             *
-             * System.out.println( "Usuario salvo" );
-*
              */
-            User login
-                    = controller.login(
-                            "admin@gmail.com",
-                            "123456"
-                    );
-
-            if (login != null) {
-
-                System.out.println(
-                        "Login realizado"
-                );
-
-            }
-            /**
-             * Adotante adotante = new Adotante();
-             *
-             * adotante.setNome( "Maria" );
-             *
-             * adotante.setCpf( "12345678900" );
-             *
-             * adotante.setEmail( "maria@gmail.com" );
-             *
-             * adotante.setTelefone( "67999999999" );
-             *
-             * adotante.setEndereco( "Rua A" );
-             *
-             * Preferencias preferencias = new Preferencias();
-             *
-             * preferencias.setTipo( "Gato" );
-             *
-             * preferencias.setCor( "Preto" );
-             *
-             * preferencias.setGenero( 'M' );
-             *
-             * preferencias.setCastrado( true );
-             *
-             * preferencias.setPorte( 'P' );
-             *
-             * preferencias.setFIV( false );
-             *
-             * preferencias.setFELV( false );
-             *
-             * controller.salvarAdotante( adotante, preferencias );
-             *
-             * System.out.println( "Adotante salvo" );
-             *
-             * Animal animal = new Animal();
-             *
-             * animal.setNome( "Thor" );
-             *
-             * animal.setTipo( "Gato" );
-             *
-             * animal.setCor( "Preto" );
-             *
-             * animal.setIdade( 2 );
-             *
-             * animal.setGenero( 'M' );
-             *
-             * animal.setRaca( "Siames" );
-             *
-             * animal.setDeficiencia( false );
-             *
-             * animal.setCastrado( true );
-             *
-             * animal.setPeso( 3.5f );
-             *
-             * animal.setPorte( 'P' );
-             *
-             * animal.setFIV( false );
-             *
-             * animal.setFELV( false );
-             *
-             * animal.setEstado( "NAO_ADOTADO" );
-             *
-             * controller.salvarAnimal( animal );
-             *
-             * System.out.println( "Animal salvo" );
-             *
-             * Vacina vacina = new Vacina();
-             *
-             * vacina.setNome( "V4" );
-             *
-             * controller.salvarVacina( vacina );
-             *
-             * System.out.println( "Vacina salva" );
-*
-             */
-            List<Vacina> vacinas
-                    = controller
-                            .listarVacinas();
-
-            int vacinaId
-                    = vacinas.get(0)
-                            .getId();
-          
-
-            AnimalVacina av
-                    = new AnimalVacina();
-
-            av.setAnimalId(
-                   1
-            );
-
-            av.setVacinaId(
-                    vacinaId
-            );
-
-            av.setDataAplicacao(
-                    LocalDate.now()
-            );
-
-            av.setDataReforco(
-                    LocalDate.now()
-                            .plusDays(5)
-            );
-
-            controller.salvarAnimalVacina(
-                    av
-            );
+            testeMatch();
 
             System.out.println(
-                    "Relacao animal vacina salva"
-            );
-
-            controller.verificarVacinas();
-
-            System.out.println(
-                    "Verificacao vacina feita"
-            );
-/**
-            controller.gerarMatchesAutomaticos();
-
-            System.out.println(
-                    "Match automatico realizado"
-            );
-
-            Adocao adocao
-                    = new Adocao();
-
-            adocao.setAdotanteId(
-                    adotante.getId()
-            );
-
-            adocao.setAnimalId(
-                    animal.getId()
-            );
-
-            adocao.setStatus(
-                    "EM_PROCESSO"
-            );
-
-            controller.salvarAdocao(
-                    adocao
-            );
-
-            System.out.println(
-                    "Adocao salva"
-            );
-
-            Historico historico
-                    = new Historico();
-
-            historico.setUsuarioId(
-                    user.getId()
-            );
-
-            historico.setAnimalId(
-                    animal.getId()
-            );
-
-            historico.setAdotanteId(
-                    adotante.getId()
-            );
-
-            historico.setAcao(
-                    "Adocao iniciada"
-            );
-
-            controller.salvarHistorico(
-                    historico
-            );
-
-            System.out.println(
-                    "Historico salvo"
-            );
-
-            Estatistica estatistica
-                    = controller
-                            .buscarEstatisticas();
-
-            System.out.println(
-                    "Animais adotados: "
-                    + estatistica
-                            .getAnimaisAdotados()
-            );
-
-            System.out.println(
-                    "Animais nao adotados: "
-                    + estatistica
-                            .getAnimaisNaoAdotados()
-            );
-
-            System.out.println(
-                    "Animais em processo: "
-                    + estatistica
-                            .getAnimaisEmProcesso()
-            );
-
-            System.out.println(
-                    "Total adocoes: "
-                    + estatistica
-                            .getTotalAdocoes()
-            );
-
-            List<Animal> animais
-                    = controller
-                            .listarAnimais();
-
-            System.out.println(
-                    "Lista animais:"
-            );
-
-            for (Animal a : animais) {
-
-                System.out.println(
-                        a.getNome()
-                        + " - "
-                        + a.getEstado()
-                );
-            }
-
-            List<Adotante> adotantes
-                    = controller
-                            .listarAdotantes();
-
-            System.out.println(
-                    "Lista adotantes:"
-            );
-
-            for (Adotante a : adotantes) {
-
-                System.out.println(
-                        a.getNome()
-                );
-            }
-
-            List<Notificacao> notificacoes
-                    = controller
-                            .listarNotificacoes();
-
-            System.out.println(
-                    "Lista notificacoes:"
-            );
-
-            for (Notificacao n : notificacoes) {
-
-                System.out.println(
-                        n.getMensagem()
-                );
-            }
-
-            List<Historico> historicos
-                    = controller
-                            .listarHistorico();
-
-            System.out.println(
-                    "Lista historico:"
-            );
-
-            for (Historico h : historicos) {
-
-                System.out.println(
-                        h.getAcao()
-                );
-            }
-
-            controller.gerarPdfEstatistica(
-                    "estatistica.pdf"
-            );
-
-            controller.gerarPdfHistorico(
-                    "historico.pdf"
-            );
-
-            System.out.println(
-                    "PDFs gerados"
-            );
-**/
-            System.out.println(
-                    "========== SISTEMA FUNCIONANDO =========="
+                    "\nTESTES FINALIZADOS"
             );
 
         } catch (Exception e) {
 
             e.printStackTrace();
 
+        }
+    }
+
+    public static void testeInsert()
+            throws Exception {
+
+        System.out.println(
+                "\n========== TESTE INSERT =========="
+        );
+
+        User user
+                = new User();
+
+        user.setNome(
+                "Admin"
+        );
+
+        user.setEmail(
+                "admin@gmail.com"
+        );
+
+        user.setSenhaHash(
+                "123456"
+        );
+
+        controller.salvarUsuario(
+                user
+        );
+
+        System.out.println(
+                "Usuario salvo"
+        );
+
+        Adotante adotante
+                = new Adotante();
+
+        adotante.setNome(
+                "Maria"
+        );
+
+        adotante.setCpf(
+                "12345678900"
+        );
+
+        adotante.setEmail(
+                "maria@gmail.com"
+        );
+
+        adotante.setTelefone(
+                "679999999"
+        );
+
+        adotante.setEndereco(
+                "Rua A"
+        );
+
+        Preferencias pref
+                = new Preferencias();
+
+        pref.setTipo(
+                "Gato"
+        );
+
+        pref.setCor(
+                "Preto"
+        );
+
+        pref.setGenero(
+                'M'
+        );
+
+        pref.setCastrado(
+                true
+        );
+
+        controller.salvarAdotante(
+                adotante,
+                pref
+        );
+
+        System.out.println(
+                "Adotante salvo"
+        );
+
+        Animal animal
+                = new Animal();
+
+        animal.setNome(
+                "Thor"
+        );
+
+        animal.setTipo(
+                "Gato"
+        );
+
+        animal.setCor(
+                "Preto"
+        );
+
+        animal.setGenero(
+                'M'
+        );
+
+        animal.setIdade(
+                2
+        );
+
+        animal.setCastrado(
+                true
+        );
+
+        animal.setEstado(
+                "NAO_ADOTADO"
+        );
+
+        controller.salvarAnimalComFoto(
+                animal
+        );
+
+        System.out.println(
+                "Animal salvo"
+        );
+
+        Vacina vacina
+                = new Vacina();
+
+        vacina.setNome(
+                "V4"
+        );
+
+        controller.salvarVacina(
+                vacina
+        );
+
+        System.out.println(
+                "Vacina salva"
+        );
+
+        List<Vacina> vacinas
+                = controller
+                        .listarVacinas();
+
+        AnimalVacina av
+                = new AnimalVacina();
+
+        av.setAnimalId(
+                1
+        );
+
+        av.setVacinaId(
+                vacinas.get(0)
+                        .getId()
+        );
+
+        av.setDataAplicacao(
+                LocalDate.now()
+        );
+
+        av.setDataReforco(
+                LocalDate.now()
+                        .plusDays(5)
+        );
+
+        controller.salvarAnimalVacina(
+                av
+        );
+
+        System.out.println(
+                "Relacao animal vacina salva"
+        );
+
+        Adocao adocao
+                = new Adocao();
+
+        adocao.setAdotanteId(
+                adotante.getId()
+        );
+
+        adocao.setAnimalId(
+                1
+        );
+
+        adocao.setStatus(
+                "EM_PROCESSO"
+        );
+
+        controller.salvarAdocao(
+                adocao
+        );
+
+        System.out.println(
+                "Adocao salva"
+        );
+
+        Historico historico
+                = new Historico();
+
+        historico.setUsuarioId(
+                1
+        //user.getId()
+        );
+
+        historico.setAnimalId(
+                1
+        // animal.getId()
+        );
+
+        historico.setAdotanteId(
+                1
+        // adotante.getId()
+        );
+
+        historico.setAcao(
+                "Adocao criada"
+        );
+
+        controller.salvarHistorico(
+                historico
+        );
+
+        System.out.println(
+                "Historico salvo"
+        );
+    }
+
+    public static void testeSelect()
+            throws Exception {
+
+        System.out.println(
+                "\n========== TESTE SELECT =========="
+        );
+
+        List<Animal> animais
+                = controller
+                        .listarAnimais();
+
+        for (Animal a : animais) {
+
+            System.out.println(
+                    a.getId()
+                    + " - "
+                    + a.getNome()
+                    + " - "
+                    + a.getEstado()
+            );
+        }
+
+        List<Adotante> adotantes
+                = controller
+                        .listarAdotantes();
+
+        for (Adotante a : adotantes) {
+
+            System.out.println(
+                    a.getNome()
+            );
+        }
+
+        List<Vacina> vacinas
+                = controller
+                        .listarVacinas();
+
+        for (Vacina v : vacinas) {
+
+            System.out.println(
+                    v.getNome()
+            );
+        }
+
+        List<Historico> historicos
+                = controller
+                        .listarHistorico();
+
+        for (Historico h : historicos) {
+
+            System.out.println(
+                    h.getAcao()
+            );
+        }
+
+        List<Notificacao> notificacoes
+                = controller
+                        .listarNotificacoes();
+
+        for (Notificacao n : notificacoes) {
+
+            System.out.println(
+                    n.getMensagem()
+            );
+        }
+
+        Estatistica e
+                = controller
+                        .buscarEstatisticas();
+
+        System.out.println(
+                "Adotados: "
+                + e.getAnimaisAdotados()
+        );
+    }
+
+    public static void testeUpdate()
+            throws Exception {
+
+        System.out.println(
+                "\n========== TESTE UPDATE =========="
+        );
+
+        Animal animal
+                = controller
+                        .BuscarAnimalPorId(1);
+
+        if (animal != null) {
+
+            animal.setNome(
+                    "Thor Atualizado"
+            );
+
+            animal.setEstado(
+                    "EM_PROCESSO"
+            );
+
+            controller.atualizarAnimal(
+                    animal
+            );
+
+            System.out.println(
+                    "Animal atualizado"
+            );
+        }
+    }
+
+    public static void testeDelete()
+            throws Exception {
+
+        System.out.println(
+                "\n========== TESTE DELETE =========="
+        );
+
+        controller.deletarAnimal(1);
+
+        System.out.println(
+                "Animal deletado"
+        );
+    }
+
+    public static void testeRelacoes()
+            throws Exception {
+
+        System.out.println(
+                "\n========== TESTE RELACOES =========="
+        );
+
+        List<AnimalVacina> lista
+                = controller
+                        .listarAnimalVacina(1);
+        List<Animal> listaA
+                = controller
+                        .listarAnimais();
+
+        Preferencias listap
+                = controller
+                        .buscarPreferencias(1);
+        for (AnimalVacina av : lista) {
+
+            System.out.println(
+                    "Animal "
+                    + av.getAnimalId()
+                    + " tomou vacina "
+                    + av.getVacinaId()
+            );
+        }
+
+        controller.verificarVacinas();
+
+        System.out.println(
+                "Notificacao vacina ok"
+        );
+
+        controller.gerarMatchesAutomaticos();
+
+        System.out.println(
+                "Match automatico ok"
+        );
+
+        controller.gerarPdfEstatistica(
+                "estatistica.pdf"
+        );
+
+        controller.gerarPdfHistorico(
+                "historico.pdf"
+        );
+
+        System.out.println(
+                "PDF gerado"
+        );
+    }
+
+    public static void  testeMatch()
+            throws Exception {
+        List<ResultadoMatch> r ;
+        System.out.println(
+                "\n===== TESTE MATCH ====="
+        );
+
+        List<Adotante> adotantes
+                = controller
+                        .listarAdotantes();
+
+        for (Adotante adotante : adotantes) {
+
+            System.out.println(
+                    "\nAdotante: "
+                    + adotante.getNome()
+            );
+
+            Preferencias pref
+                    = controller
+                            .buscarPreferencias(
+                                    adotante.getId()
+                            );
+             r = mathC.buscarAnimaisCompativeis(pref);
+             
+             for( ResultadoMatch rr: r){
+                  System.out.println(
+                    rr.getAnimal().getNome()
+                    + " -> "
+                    + rr.getPontos()
+                    + " pontos"
+            );
+             }
         }
     }
 }

@@ -80,11 +80,20 @@ public class SistemaController {
                 );
     }
 
-    public void salvarAnimal(
+    public void salvarAnimalComFoto(
             Animal animal
-    ) throws SQLException {
+            
+    ) throws Exception {
 
-        animalService.salvar(animal);
+        animalService.salvarComFoto(
+                animal
+        );
+    }
+
+    public List<User> ListaUsuario()
+            throws SQLException {
+
+        return userService.listar();
 
     }
 
@@ -95,7 +104,7 @@ public class SistemaController {
 
     }
 
-    public Animal BusavcaAnimaisporId(
+    public Animal BuscarAnimalPorId(
             int id
     ) throws SQLException {
 
@@ -176,12 +185,10 @@ public class SistemaController {
 
     }
 
-    public List<Vacina> listarVacinas(
-       
-    ) throws SQLException {
+    public List<Vacina> listarVacinas() throws SQLException {
 
         return vacinaService
-               .listar();
+                .listar();
     }
 
     public void salvarAdocao(

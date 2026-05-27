@@ -22,6 +22,7 @@ public class AnimalDAO {
             INSERT INTO animal
             (
                 nome,
+                foto,
                 tipo,
                 cor,
                 idade,
@@ -35,25 +36,26 @@ public class AnimalDAO {
                 felv,
                 estado
             )
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            VALUES (?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         """;
 
         PreparedStatement stmt =
                 conn.prepareStatement(sql);
 
         stmt.setString(1, animal.getNome());
-        stmt.setString(2, animal.getTipo());
-        stmt.setString(3, animal.getCor());
-        stmt.setInt(4, animal.getIdade());
-        stmt.setString(5, String.valueOf(animal.getGenero()));
-        stmt.setString(6, animal.getRaca());
-        stmt.setBoolean(7, animal.isDeficiencia());
-        stmt.setBoolean(8, animal.isCastrado());
-        stmt.setFloat(9, animal.getPeso());
-        stmt.setString(10, String.valueOf(animal.getPorte()));
-        stmt.setBoolean(11, animal.isFIV());
-        stmt.setBoolean(12, animal.isFELV());
-        stmt.setString(13, animal.getEstado());
+        stmt.setString(2,animal.getFoto());
+        stmt.setString(3, animal.getTipo());
+        stmt.setString(4, animal.getCor());
+        stmt.setInt(5, animal.getIdade());
+        stmt.setString(6, String.valueOf(animal.getGenero()));
+        stmt.setString(7, animal.getRaca());
+        stmt.setBoolean(8, animal.isDeficiencia());
+        stmt.setBoolean(9, animal.isCastrado());
+        stmt.setFloat(10, animal.getPeso());
+        stmt.setString(11, String.valueOf(animal.getPorte()));
+        stmt.setBoolean(12, animal.isFIV());
+        stmt.setBoolean(13, animal.isFELV());
+        stmt.setString(14, animal.getEstado());
 
         stmt.executeUpdate();
 
@@ -82,6 +84,7 @@ public class AnimalDAO {
 
             animal.setId(rs.getInt("id"));
             animal.setNome(rs.getString("nome"));
+            animal.setFoto(rs.getString("foto"));
             animal.setTipo(rs.getString("tipo"));
             animal.setCor(rs.getString("cor"));
             animal.setIdade(rs.getInt("idade"));
