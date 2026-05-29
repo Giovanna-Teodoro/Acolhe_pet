@@ -22,7 +22,7 @@ public class AnimaisCompativeis extends javax.swing.JFrame {
     }
     
     
-       public AnimaisCompativeis carregar (Animal a){
+     public AnimaisCompativeis carregar (Animal a){
         AnimaisCompativeis novo = new AnimaisCompativeis();
         edtNome.setText(a.getNome());
         edtCastrado.setText(String.valueOf(a.isCastrado()));
