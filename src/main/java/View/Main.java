@@ -8,6 +8,15 @@ package View;
  *
  * @author fanim
  */
+ import Model_Entety.Animal;
+import Model_Entety.User;
+import Model_Entety.Adotante;
+import Model_Entety.Notificacao;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+
 public class Main extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Main.class.getName());
@@ -17,6 +26,37 @@ public class Main extends javax.swing.JFrame {
      */
     public Main() {
         initComponents();
+    }
+    
+        
+    public Main carregar(Animal a, User u, Notificacao n){
+        Main principal = new Main();
+        edtNome.setText(a.getNome());
+        edtCastrado.setText(String.valueOf(a.isCastrado()));
+        edtCor.setText(a.getCor());        
+        edtDeficiencia.setText(String.valueOf(a.isDeficiencia()));
+        edtGenero.setText(String.valueOf(a.getGenero()));
+        edtIdade.setText(String.valueOf(a.getIdade()));
+        edtPeso.setText(String.valueOf(a.getPeso()));
+        edtRaca.setText(String.valueOf(a.getRaca()));
+        edtTipo.setText(a.getTipo());
+        
+        String tipoSelecionado = comboTipo.getSelectedItem().toString();
+        String racaSelecionado = comboRaca.getSelectedItem().toString();
+        String porteSelecionado = comboPorte.getSelectedItem().toString();
+        String pesoSelecionado = comboPeso.getSelectedItem().toString();
+        String generoSelecionado = comboGenero.getSelectedItem().toString();
+        String fivSelecionado =  comboFIV.getSelectedItem().toString();
+        String felvSelecionado = comboFELV.getSelectedItem().toString();
+        String deficienciaSelecionado = comboDeficiencia.getSelectedItem().toString();
+        String corSelecionado = comboCor.getSelectedItem().toString();
+        String castradoSelecionado = comboCastrado.getSelectedItem().toString();
+        
+    
+                
+        return principal;
+       
+        
     }
 
     /**
@@ -69,7 +109,7 @@ public class Main extends javax.swing.JFrame {
         jLabel54 = new javax.swing.JLabel();
         jLabel53 = new javax.swing.JLabel();
         jLabel58 = new javax.swing.JLabel();
-        jLabel_Nome_Animal = new javax.swing.JLabel();
+        edtNome = new javax.swing.JLabel();
         jLabel59 = new javax.swing.JLabel();
         jLabel52 = new javax.swing.JLabel();
         jLabel55 = new javax.swing.JLabel();
@@ -81,7 +121,7 @@ public class Main extends javax.swing.JFrame {
         edtTipo = new java.awt.Label();
         edtCor = new java.awt.Label();
         edtIdade = new java.awt.Label();
-        edtCadastro = new java.awt.Label();
+        edtCastrado = new java.awt.Label();
         edtGenero = new java.awt.Label();
         edtRaca = new java.awt.Label();
         edtPeso = new java.awt.Label();
@@ -361,7 +401,7 @@ public class Main extends javax.swing.JFrame {
                     .addGroup(jPanel8_CabecalhoLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(btnHome)))
-                .addGap(0, 3, Short.MAX_VALUE))
+                .addGap(0, 4, Short.MAX_VALUE))
         );
 
         jPanel3.setBackground(new java.awt.Color(232, 231, 204));
@@ -385,9 +425,9 @@ public class Main extends javax.swing.JFrame {
         jLabel58.setForeground(new java.awt.Color(250, 166, 190));
         jLabel58.setText("Peso:");
 
-        jLabel_Nome_Animal.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        jLabel_Nome_Animal.setForeground(new java.awt.Color(250, 166, 190));
-        jLabel_Nome_Animal.setText("Nome animal");
+        edtNome.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        edtNome.setForeground(new java.awt.Color(250, 166, 190));
+        edtNome.setText("Nome animal");
 
         jLabel59.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jLabel59.setForeground(new java.awt.Color(250, 166, 190));
@@ -450,9 +490,9 @@ public class Main extends javax.swing.JFrame {
         edtIdade.setForeground(new java.awt.Color(250, 166, 190));
         edtIdade.setText("label1");
 
-        edtCadastro.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-        edtCadastro.setForeground(new java.awt.Color(250, 166, 190));
-        edtCadastro.setText("label1");
+        edtCastrado.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        edtCastrado.setForeground(new java.awt.Color(250, 166, 190));
+        edtCastrado.setText("label1");
 
         edtGenero.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         edtGenero.setForeground(new java.awt.Color(250, 166, 190));
@@ -502,7 +542,7 @@ public class Main extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(27, 27, 27)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel_Nome_Animal, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(edtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel52, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(10, 10, 10)
@@ -526,7 +566,7 @@ public class Main extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel57, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(edtCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(edtCastrado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel54, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -541,7 +581,7 @@ public class Main extends javax.swing.JFrame {
                 .addGap(24, 24, 24)
                 .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel_Nome_Animal)
+                .addComponent(edtNome)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel52)
@@ -570,7 +610,7 @@ public class Main extends javax.swing.JFrame {
                 .addGap(5, 5, 5)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel57)
-                    .addComponent(edtCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(edtCastrado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(14, 14, 14)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel58)
@@ -593,7 +633,7 @@ public class Main extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(726, Short.MAX_VALUE))
+                .addContainerGap(717, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -614,9 +654,9 @@ public class Main extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                    .addContainerGap(274, Short.MAX_VALUE)
+                    .addContainerGap(278, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(274, Short.MAX_VALUE)))
+                    .addContainerGap(279, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -742,13 +782,14 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comboPorte;
     private javax.swing.JComboBox<String> comboRaca;
     private javax.swing.JComboBox<String> comboTipo;
-    private java.awt.Label edtCadastro;
+    private java.awt.Label edtCastrado;
     private java.awt.Label edtChip;
     private java.awt.Label edtCor;
     private java.awt.Label edtDataEntrada;
     private java.awt.Label edtDeficiencia;
     private java.awt.Label edtGenero;
     private java.awt.Label edtIdade;
+    private javax.swing.JLabel edtNome;
     private javax.swing.JLabel edtNomeUser;
     private java.awt.Label edtPeso;
     private java.awt.Label edtRaca;
@@ -771,7 +812,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel_FIV;
     private javax.swing.JLabel jLabel_Filtro;
     private javax.swing.JLabel jLabel_Genero;
-    private javax.swing.JLabel jLabel_Nome_Animal;
     private javax.swing.JLabel jLabel_Peso;
     private javax.swing.JLabel jLabel_Porte;
     private javax.swing.JLabel jLabel_Raça;
