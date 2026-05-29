@@ -106,7 +106,7 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="0" pref="216" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="214" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="comboTipo" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel_Tipo" alignment="0" max="32767" attributes="0"/>
@@ -126,7 +126,7 @@
                               <Component id="jLabel_Deficiencia" alignment="0" min="-2" pref="72" max="-2" attributes="0"/>
                               <Component id="comboDeficiencia" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="0" pref="106" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="105" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="jLabel_Filtro" min="-2" pref="120" max="-2" attributes="0"/>
@@ -335,10 +335,11 @@
                 <Component class="javax.swing.JComboBox" name="comboFIV">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="3">
+                      <StringArray count="4">
                         <StringItem index="0" value="Selecionar"/>
-                        <StringItem index="1" value="Sim"/>
-                        <StringItem index="2" value="N&#xe3;o"/>
+                        <StringItem index="1" value="Aceita"/>
+                        <StringItem index="2" value="N&#xe3;o Aceita"/>
+                        <StringItem index="3" value=" "/>
                       </StringArray>
                     </Property>
                   </Properties>
@@ -351,9 +352,9 @@
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="4">
                         <StringItem index="0" value="Selecionar"/>
-                        <StringItem index="1" value="Pequeno"/>
-                        <StringItem index="2" value="M&#xe9;dio"/>
-                        <StringItem index="3" value="Grande"/>
+                        <StringItem index="1" value="P"/>
+                        <StringItem index="2" value="M"/>
+                        <StringItem index="3" value="G"/>
                       </StringArray>
                     </Property>
                   </Properties>
@@ -398,8 +399,8 @@
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="3">
                         <StringItem index="0" value="Selecionar"/>
-                        <StringItem index="1" value="Sim"/>
-                        <StringItem index="2" value="N&#xe3;o"/>
+                        <StringItem index="1" value="Aceita"/>
+                        <StringItem index="2" value="N&#xe3;o Aceita"/>
                       </StringArray>
                     </Property>
                   </Properties>
@@ -520,9 +521,9 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                          <Component id="btnHome" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="880" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="btnHome" min="-2" pref="66" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                           <Component id="btnCadastrarAdt" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="btnCadastrarAnimal" min="-2" max="-2" attributes="0"/>
@@ -546,8 +547,12 @@
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="btnHome" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
                                   <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="1" attributes="0">
                                       <Group type="103" alignment="1" groupAlignment="3" attributes="0">
@@ -567,12 +572,8 @@
                                       </Group>
                                   </Group>
                               </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="btnHome" min="-2" max="-2" attributes="0"/>
-                              </Group>
                           </Group>
-                          <EmptySpace min="0" pref="4" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="3" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -717,7 +718,7 @@
                       <Color blue="51" green="5a" red="0" type="rgb"/>
                     </Property>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/Imagens/icon_acolhepet - Copia (3).png"/>
+                      <Image iconType="3" name="/Imagens/icon_acolhepet.png"/>
                     </Property>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="null"/>

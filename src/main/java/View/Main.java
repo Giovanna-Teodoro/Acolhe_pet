@@ -16,6 +16,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 public class Main extends javax.swing.JFrame {
     
@@ -31,6 +32,10 @@ public class Main extends javax.swing.JFrame {
         
     public Main carregar(Animal a, User u, Notificacao n){
         Main principal = new Main();
+        
+        // Carregar dados de todos os animais  sem selecao */
+        
+               
         edtNome.setText(a.getNome());
         edtCastrado.setText(String.valueOf(a.isCastrado()));
         edtCor.setText(a.getCor());        
@@ -41,16 +46,158 @@ public class Main extends javax.swing.JFrame {
         edtRaca.setText(String.valueOf(a.getRaca()));
         edtTipo.setText(a.getTipo());
         
+        edtNomeUser.setText(u.getNome());
+        
+          // Carregar as preferencias no campo de selecao 
+        String erros = "";
+        
         String tipoSelecionado = comboTipo.getSelectedItem().toString();
+        if (tipoSelecionado.equalsIgnoreCase("Selecionar")) {
+            erros = erros + "- Tipo de preferência não selecionado.\n";
+        }
+        
         String racaSelecionado = comboRaca.getSelectedItem().toString();
+        if (racaSelecionado.equalsIgnoreCase("Selecionar")) {
+            erros = erros + "- Raça de preferência não selecionada.\n";
+        }
+        
         String porteSelecionado = comboPorte.getSelectedItem().toString();
+        char porteChar = ' ';
+        if (porteSelecionado.equalsIgnoreCase("Selecionar")) {
+            erros = erros + "- Porte de preferência não selecionado.\n";}
+        else{
+            porteChar = porteSelecionado.charAt(0);
+        }
+            
         String pesoSelecionado = comboPeso.getSelectedItem().toString();
+        float pesoAnimal = 0;
+        if (pesoSelecionado.equalsIgnoreCase("Selecionar")) {
+            erros = erros + "- Faixa de Peso não selecionada.\n";
+        }else{
+            pesoAnimal = Float.parseFloat(pesoSelecionado);
+            
+        }
         String generoSelecionado = comboGenero.getSelectedItem().toString();
+        char generoChar = ' ';
+        if(generoSelecionado.equalsIgnoreCase("Selecionar")){
+            erros = erros +" Gênero de preferência não selecionado.\n";
+        }else{
+            generoChar = generoSelecionado.charAt(0);
+        }
+        
+        
         String fivSelecionado =  comboFIV.getSelectedItem().toString();
+        boolean temFiv = false;
+        if (fivSelecionado.equalsIgnoreCase("Selecionar")) {
+            erros = erros + "- Opção de FIV não selecionada.\n";
+        }else{
+            if(fivSelecionado.equalsIgnoreCase("Aceita")){
+                temFiv = true;
+            }
+        }
+    
         String felvSelecionado = comboFELV.getSelectedItem().toString();
+        boolean temFelv = false; 
+        if (felvSelecionado.equalsIgnoreCase("Selecionar")) {
+            erros = erros + "- Opção de FeLV não selecionada.\n";
+        }else{
+            if(felvSelecionado.equalsIgnoreCase("Aceita")){
+                temFelv = true; 
+            }
+        }
         String deficienciaSelecionado = comboDeficiencia.getSelectedItem().toString();
+        boolean temDeficiencia= false;
+        if (deficienciaSelecionado.equalsIgnoreCase("Selecionar")) {
+            erros = erros + "- Opção de Deficiência não selecionada.\n";
+        }else{
+            if(deficienciaSelecionado.equalsIgnoreCase("Sim")){
+                temDeficiencia = true;
+            }
+        }
+        
         String corSelecionado = comboCor.getSelectedItem().toString();
+        if (corSelecionado.equalsIgnoreCase("Selecionar")) {
+            erros = erros + "- Cor de preferência não selecionada.\n";
+        }
         String castradoSelecionado = comboCastrado.getSelectedItem().toString();
+        boolean ehCastrado= false;
+        if (castradoSelecionado.equalsIgnoreCase("Selecionar")) {
+            erros = erros + "- Opção de Castração não selecionada.\n";
+        }else{
+            if(castradoSelecionado.equalsIgnoreCase("Sim")){
+                ehCastrado = true;
+            }
+        }        
+        
+        
+        if (!erros.equals("")) {
+            String mensagemFinal = "Por favor, corrija os seguintes campos antes de prosseguir:\n\n" + erros;
+
+            JOptionPane.showMessageDialog(null, mensagemFinal, "Campos Pendentes", JOptionPane.WARNING_MESSAGE);
+            return null;
+        }
+        
+        
+        btnBuscar.addMouseListener(new MouseAdapter(){
+        
+        Item novo = new Item();
+        
+       
+                
+        });
+       
+        
+        //Botões para outras pgs
+        
+        btnCadastrarAnimal.addMouseListener( new MouseAdapter(){
+            @Override
+            public void mouseClicked(MouseEvent e){
+                dispose();
+                
+                CadastroAnimal novaPagina = new CadastroAnimal();
+                novaPagina.setVisible(true);
+                
+                
+            }
+        });   
+        
+        btnCadastrarAdt.addMouseListener( new MouseAdapter(){
+            @Override
+            public void mouseClicked(MouseEvent e){
+                dispose();
+                
+                CadastroAdotante novaPagina = new CadastroAdotante();
+                novaPagina.setVisible(true);
+                
+                
+            }
+        }); 
+        
+        btnHistorico.addMouseListener( new MouseAdapter(){
+            @Override
+            public void mouseClicked(MouseEvent e){
+                dispose();
+                
+                Historico novaPagina = new Historico();
+                novaPagina.setVisible(true);
+                
+                
+            }
+        }); 
+        
+        btnEstatisticas.addMouseListener( new MouseAdapter(){
+            @Override
+            public void mouseClicked(MouseEvent e){
+                dispose();
+                
+                Estatisticas novaPagina = new Estatisticas();
+                novaPagina.setVisible(true);
+                
+                
+            }
+        }); 
+    
+         
         
     
                 
@@ -173,16 +320,16 @@ public class Main extends javax.swing.JFrame {
         comboTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecionar", "Gato", "Cão" }));
         comboTipo.addActionListener(this::comboTipoActionPerformed);
 
-        comboFIV.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecionar", "Sim", "Não" }));
+        comboFIV.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecionar", "Aceita", "Não Aceita", " " }));
 
-        comboPorte.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecionar", "Pequeno", "Médio", "Grande" }));
+        comboPorte.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecionar", "P", "M", "G" }));
         comboPorte.addActionListener(this::comboPorteActionPerformed);
 
         comboCastrado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecionar", "Sim", "Não" }));
 
         comboDeficiencia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecionar", "Sim", "Não", " " }));
 
-        comboFELV.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecionar", "Sim", "Não" }));
+        comboFELV.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecionar", "Aceita", "Não Aceita" }));
 
         comboCor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecionar", "Preto", "Branco", "Castanho ", "Caramelo ", "Indiferente" }));
 
@@ -208,7 +355,7 @@ public class Main extends javax.swing.JFrame {
         jPanel_Filtros_MainLayout.setHorizontalGroup(
             jPanel_Filtros_MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_Filtros_MainLayout.createSequentialGroup()
-                .addGap(0, 216, Short.MAX_VALUE)
+                .addGap(0, 214, Short.MAX_VALUE)
                 .addGroup(jPanel_Filtros_MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(comboTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel_Tipo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -223,7 +370,7 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(jPanel_Filtros_MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel_Deficiencia, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(comboDeficiencia, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 106, Short.MAX_VALUE)
+                .addGap(0, 105, Short.MAX_VALUE)
                 .addGroup(jPanel_Filtros_MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel_Filtros_MainLayout.createSequentialGroup()
                         .addComponent(jLabel_Filtro, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -350,7 +497,7 @@ public class Main extends javax.swing.JFrame {
 
         btnHome.setBackground(new java.awt.Color(0, 90, 81));
         btnHome.setForeground(new java.awt.Color(0, 90, 81));
-        btnHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icon_acolhepet - Copia (3).png"))); // NOI18N
+        btnHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icon_acolhepet.png"))); // NOI18N
         btnHome.setBorder(null);
         btnHome.addActionListener(this::btnHomeActionPerformed);
 
@@ -359,9 +506,9 @@ public class Main extends javax.swing.JFrame {
         jPanel8_CabecalhoLayout.setHorizontalGroup(
             jPanel8_CabecalhoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8_CabecalhoLayout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(btnHome)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 880, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(btnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 882, Short.MAX_VALUE)
                 .addComponent(btnCadastrarAdt)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnCadastrarAnimal)
@@ -382,7 +529,10 @@ public class Main extends javax.swing.JFrame {
         jPanel8_CabecalhoLayout.setVerticalGroup(
             jPanel8_CabecalhoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8_CabecalhoLayout.createSequentialGroup()
-                .addGroup(jPanel8_CabecalhoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel8_CabecalhoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel8_CabecalhoLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnHome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel8_CabecalhoLayout.createSequentialGroup()
                         .addGap(19, 19, 19)
                         .addGroup(jPanel8_CabecalhoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -397,11 +547,8 @@ public class Main extends javax.swing.JFrame {
                                     .addComponent(edtNomeUser)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(jLabel_Welcome))
-                                .addComponent(btnNotificacao))))
-                    .addGroup(jPanel8_CabecalhoLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnHome)))
-                .addGap(0, 4, Short.MAX_VALUE))
+                                .addComponent(btnNotificacao)))))
+                .addGap(0, 3, Short.MAX_VALUE))
         );
 
         jPanel3.setBackground(new java.awt.Color(232, 231, 204));
@@ -663,7 +810,7 @@ public class Main extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel8_Cabecalho, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel_Filtros_Main, javax.swing.GroupLayout.PREFERRED_SIZE, 105, Short.MAX_VALUE)
+                .addComponent(jPanel_Filtros_Main, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
                 .addGap(866, 866, 866))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
